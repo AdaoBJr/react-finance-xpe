@@ -1,8 +1,8 @@
 import { StandardTextFieldProps } from '@mui/material';
 
 export interface DropdownItems {
-  label: string | number;
-  value: string | number;
+  label: string;
+  value: string;
 }
 
 export interface DropdownProps extends Omit<StandardTextFieldProps, 'variant'> {
