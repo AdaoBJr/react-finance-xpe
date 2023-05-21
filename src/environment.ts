@@ -7,6 +7,6 @@ export type Environment = 'dev' | 'prd' | 'test';
 export const getEnv = () => ({
   ENV: [dev, prd, test].find(Boolean)! as Environment,
   URL_BASE: prd
-    ? 'https://finance-db-xpe.vercel.app/data'
+    ? 'https://finance-db-xpe.vercel.app/despesas'
     : 'http://localhost:4000/despesas',
 });
