@@ -2,7 +2,7 @@ import React from 'react';
 import { Divider, Grid, Stack, Theme, useMediaQuery } from '@mui/material';
 
 import { home } from 'articles';
-import { SxDividerUi } from './styles';
+import { SxDividerUi, SxValorUi } from './styles';
 import { Text, Title } from 'app/shared';
 import { Expense as ExpenseDomain } from 'types/domain';
 
@@ -23,7 +23,7 @@ export const Expense: React.FC<ExpensesProps> = ({
       {i === 0 && (
         <Stack>
           <Grid container p={0.5}>
-            <Grid item xs={12} sm={3}>
+            <Grid item xs={6} sm={3}>
               <Title variant="h2" children={expense} />
             </Grid>
             {!smDown && (
@@ -36,7 +36,7 @@ export const Expense: React.FC<ExpensesProps> = ({
                 <Title variant="h2" children={day} />
               </Grid>
             )}
-            <Grid item xs={12} sm={3}>
+            <Grid item xs={6} sm={3} sx={SxValorUi}>
               <Title variant="h2" children={value} />
             </Grid>
           </Grid>
@@ -46,7 +46,7 @@ export const Expense: React.FC<ExpensesProps> = ({
       {i !== 0 && (
         <Stack>
           <Grid container p={0.5}>
-            <Grid item xs={12} sm={3}>
+            <Grid item xs={6} sm={3}>
               <Text variant="h3" children={descricao} />
             </Grid>
             {!smDown && (
@@ -59,7 +59,7 @@ export const Expense: React.FC<ExpensesProps> = ({
                 <Text variant="h3" children={dia} />
               </Grid>
             )}
-            <Grid item xs={12} sm={3}>
+            <Grid item xs={6} sm={3} sx={SxValorUi}>
               <Text variant="h3" children={valor.toLocaleString('pt-BR')} />
             </Grid>
           </Grid>
