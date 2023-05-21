@@ -1,12 +1,13 @@
 import React from 'react';
 import { Grid } from '@mui/material';
 
-import { BodyHome } from './components';
+import { BodyHome, Expense } from './components';
 import { useHome } from 'services/talons';
 import { Animation, Dropdown, Row, Text } from 'app/shared';
 
 export const Home: React.FC = () => {
   const {
+    data,
     showAnimation,
     compProps: {
       animation,
@@ -35,6 +36,13 @@ export const Home: React.FC = () => {
         {showAnimation && (
           <Grid item xs={12}>
             <Animation {...animation} />
+          </Grid>
+        )}
+        {!showAnimation && data && (
+          <Grid item xs={12}>
+            {data.map((expense, i, array) => (
+              <Expense key={expense.id} i={i} expenses={array} {...expense} />
+            ))}
           </Grid>
         )}
       </Grid>

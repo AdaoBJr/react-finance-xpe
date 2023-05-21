@@ -95,5 +95,5 @@ export const useHome = () => {
     [loading, dropValue.current, totalValue]
   );
 
-  return { showAnimation, compProps };
+  return { data, showAnimation, compProps };
 };

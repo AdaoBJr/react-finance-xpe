@@ -1,4 +1,4 @@
-export interface Expenses {
+export interface Expense {
   id: number;
   descricao: string;
   categoria: string;
@@ -7,4 +7,4 @@ export interface Expenses {
   dia: string;
 }
 
-export type GetFinances = Expenses[];
+export type GetFinances = Expense[];

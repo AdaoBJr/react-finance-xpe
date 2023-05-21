@@ -82,13 +82,13 @@ export const theme = createTheme(
         fontWeight: 700,
       },
       h2: {
-        color: '#4A4A4A',
+        color: '#000',
         fontSize: '1rem',
         fontWeight: 600,
       },
       h3: {
         color: '#4A4A4A',
-        fontSize: '.875rem',
+        fontSize: '1rem',
         fontWeight: 600,
       },
       body1: {
