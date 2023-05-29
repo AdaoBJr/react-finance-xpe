@@ -1,7 +1,7 @@
 import React from 'react';
-import { Grid } from '@mui/material';
+import { Divider, Grid } from '@mui/material';
 
-import { BodyHome, Expense } from './components';
+import { BodyHome, Expense, TotalByCategory } from './components';
 import { useHome } from 'services/talons';
 import { Animation, Dropdown, Row, Text } from 'app/shared';
 
@@ -9,6 +9,7 @@ export const Home: React.FC = () => {
   const {
     data,
     showAnimation,
+    totalByCategory,
     compProps: {
       animation,
       dropdown: { year, month },
@@ -39,11 +40,32 @@ export const Home: React.FC = () => {
           </Grid>
         )}
         {!showAnimation && data && (
-          <Grid item xs={12}>
-            {data.map((expense, i, array) => (
-              <Expense key={expense.id} i={i} expenses={array} {...expense} />
-            ))}
-          </Grid>
+          <>
+            <Grid item xs={12}>
+              {totalByCategory!.map(({ categoria, total }, i) => (
+                <TotalByCategory
+                  key={categoria}
+                  i={i}
+                  category={categoria}
+                  totalValue={total}
+                />
+              ))}
+            </Grid>
+            <Grid item xs={12}>
+              <Divider
+                sx={{
+                  borderBottomWidth: '2px',
+                  borderColor: 'grey.500',
+                  margin: '2rem 0',
+                }}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              {data.map((expense, i, array) => (
+                <Expense key={expense.id} i={i} expenses={array} {...expense} />
+              ))}
+            </Grid>
+          </>
         )}
       </Grid>
     </BodyHome>

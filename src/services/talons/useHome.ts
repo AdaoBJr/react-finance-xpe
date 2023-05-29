@@ -46,11 +46,37 @@ export const useHome = () => {
   const totalValue = useMemo(
     () =>
       data
-        ?.reduce((acc, curr) => acc + curr.valor, 0)
+        ?.reduce((acc, expense) => acc + expense.valor, 0)
         .toLocaleString('pt-BR', formatCurrency),
     [data]
   );
 
+  const totalByCategory = useMemo(() => {
+    if (data) {
+      const totals = Object.values(
+        data.reduce((acc, expense) => {
+          if (acc[expense.categoria]) {
+            acc[expense.categoria] += expense.valor;
+          } else {
+            acc[expense.categoria] = expense.valor;
+          }
+          return acc;
+        }, {} as { [categoria: string]: number })
+      ).map((total, index) => ({
+        categoria: Object.keys(
+          data.reduce((acc, expense) => {
+            acc[expense.categoria] = expense.categoria;
+            return acc;
+          }, {} as { [categoria: string]: string })
+        )[index],
+        total,
+      }));
+      const newTotals = [{ categoria: 'inicio', total: 0 }, ...totals];
+      console.log('newTotals', newTotals);
+      return newTotals;
+    }
+  }, [data]);
+  console.log({ totalByCategory });
   const showAnimation = useMemo(() => !data?.length, [data]);
 
   const compProps = useMemo(
@@ -95,5 +121,5 @@ export const useHome = () => {
     [loading, dropValue.current, totalValue]
   );
 
-  return { data, showAnimation, compProps };
+  return { data, totalByCategory, showAnimation, compProps };
 };
